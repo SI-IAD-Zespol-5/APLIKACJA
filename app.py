@@ -29,8 +29,8 @@ if __name__ == '__main__':
             db.session.commit()
         
         if Supply.query.count() == 0:  # Sprawdzenie czy tabela zaopatrzenia jest pusta
-            supply1 = Supply(product_name='Pencils', category='Stationery', location='Room 101', quantity=100, status='In Stock')
-            supply2 = Supply(product_name='Notebooks', category='Stationery', location='Room 102', quantity=200, status='In Stock')
+            supply1 = Supply(product_name='Ołówki', category='Artykuły papiernicze', location='101', quantity=100, status='Na stanie')
+            supply2 = Supply(product_name='Kreda', category='Artykuły papiernicze', location='102', quantity=200, status='Na stanie')
             db.session.add(supply1)
             db.session.add(supply2)
             db.session.commit()

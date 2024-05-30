@@ -14,31 +14,23 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles.css') }}"
     />
-    <title>School Management System</title>
+    <title>System Zarządzania Szkół</title>
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">School Management System</a>
-      <span class="navbar-text"> Admin View </span>
+      <a class="navbar-brand" href="#">System Zarządzania Szkół</a>
+      <span class="navbar-text"> Admin </span>
     </nav>
     <div class="container mt-5">
-      <div class="jumbotron bg-dark text-white">
-        <h1 class="display-4">Welcome to the School Management System</h1>
-        <p class="lead">
-          This is a simple web application to manage school operations.
-        </p>
-        <hr class="my-4" />
-        <p>Here you can manage</p>
-      </div>
 
-      <h2 class="mt-5 text-white">Supplies</h2>
+      <h2 class="mt-5 text-white">Magazyn</h2>
       <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">Product Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Location</th>
-            <th scope="col">Quantity</th>
+            <th scope="col">Nazwa produktu</th>
+            <th scope="col">Kategoria</th>
+            <th scope="col">Lokalizacja</th>
+            <th scope="col">Ilość</th>
             <th scope="col">Status</th>
           </tr>
         </thead>
