@@ -1,0 +1,17 @@
+body {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.jumbotron {
+  background-color: #495057;
+  border-radius: 0.3rem;
+}
+
+.list-group-item {
+  border: 1px solid #6c757d;
+}
