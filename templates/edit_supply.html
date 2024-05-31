@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <title>Zmiana ilości artykułu</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="{{ url_for('home') }}"
+        >System Zarządzania Szkół</a
+      >
+      <span class="navbar-text"> Admin </span>
+    </nav>
+    <div class="container mt-5">
+      <h2 class="text-white">Zmiana ilości dla {{ supply.product_name }}</h2>
+      <form method="POST">
+        <div class="form-group">
+          <label for="quantity" class="text-white">Ilość</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            value="{{ supply.quantity }}"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-success">Zmień</button>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Anuluj</a>
+      </form>
+    </div>
+   
+  </body>
+</html>
