@@ -1,8 +1,9 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, User, Supply
 
 app = Flask(__name__)
+app.secret_key = 'supersecretkey'
 
 # Generowanie bezwzględnej ścieżki do pliku bazy danych
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -15,6 +16,48 @@ db.init_app(app)
 def home():
     supplies = Supply.query.all()
     return render_template('index.html', supplies=supplies)
+
+@app.route('/edit/<int:supply_id>', methods=['GET', 'POST'])
+def edit_supply(supply_id):
+    supply = Supply.query.get_or_404(supply_id)
+    if request.method == 'POST':
+        quantity = request.form.get('quantity')
+        if not quantity:
+            return render_template('edit_supply.html', supply=supply)
+        
+        try:
+            supply.quantity = int(quantity)
+            db.session.commit()
+            return redirect(url_for('home'))
+        except ValueError:
+            return render_template('edit_supply.html', supply=supply)
+    return render_template('edit_supply.html', supply=supply)
+
+
+@app.route('/add', methods=['POST'])
+def add_supply():
+    product_name = request.form.get('product_name')
+    category = request.form.get('category')
+    location = request.form.get('location')
+    quantity = request.form.get('quantity')
+    status = request.form.get('status')
+
+    if not all([product_name, category, location, quantity, status]):
+        return redirect(url_for('home'))
+
+    try:
+        new_supply = Supply(
+            product_name=product_name,
+            category=category,
+            location=location,
+            quantity=int(quantity),
+            status=status
+        )
+        db.session.add(new_supply)
+        db.session.commit()
+    except ValueError:
+        flash('Będne wartości!', 'danger')
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     with app.app_context():
