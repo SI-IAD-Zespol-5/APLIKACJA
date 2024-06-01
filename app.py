@@ -59,7 +59,35 @@ def add_supply():
         db.session.add(new_supply)
         db.session.commit()
     except ValueError:
-        flash('Będne wartości!', 'danger')
+        flash('Błędne wartości!', 'danger')
+    return redirect(url_for('home'))
+
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    username = request.form.get('username')
+    email = request.form.get('email')
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    position = request.form.get('position')
+    employment_date = request.form.get('employment_date')
+
+    if not all([username, email, first_name, last_name, position, employment_date]):
+        return redirect(url_for('home'))
+
+    try:
+        new_user = User(
+            username=username,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            position=position,
+            employment_date=datetime.strptime(employment_date, '%Y-%m-%d')
+        )
+        db.session.add(new_user)
+        db.session.commit()
+    except ValueError:
+        flash('Błędne wartości!', 'danger')
+    
     return redirect(url_for('home'))
 
 if __name__ == '__main__':

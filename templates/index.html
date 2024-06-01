@@ -22,7 +22,6 @@
       <span class="navbar-text"> Admin </span>
     </nav>
     <div class="container mt-5">
-
       <h2 class="mt-5 text-white">Magazyn</h2>
       <table class="table table-dark">
         <thead>
@@ -38,7 +37,11 @@
           {% for supply in supplies %}
           <tr>
             <td>
-              <a href="{{ url_for('edit_supply', supply_id=supply.id) }}" class="supply-link">{{ supply.product_name }}</a>
+              <a
+                href="{{ url_for('edit_supply', supply_id=supply.id) }}"
+                class="supply-link"
+                >{{ supply.product_name }}</a
+              >
             </td>
             <td>{{ supply.category }}</td>
             <td>{{ supply.location }}</td>
@@ -48,7 +51,7 @@
           {% endfor %}
         </tbody>
       </table>
-    <h2 class="mt-5 text-white">Dodaj nowy artykuł</h2>
+      <h2 class="mt-5 text-white">Dodaj nowy artykuł</h2>
       <form method="POST" action="{{ url_for('add_supply') }}">
         <div class="form-group">
           <label for="product_name" class="text-white">Nazwa produktu</label>
@@ -102,7 +105,7 @@
         </div>
         <button type="submit" class="btn btn-success">Dodaj</button>
       </form>
-    <h2 class="mt-5 text-white">Użytkownicy</h2>
+      <h2 class="mt-5 text-white">Użytkownicy</h2>
       <table class="table table-dark">
         <thead>
           <tr>
@@ -127,7 +130,72 @@
           {% endfor %}
         </tbody>
       </table>
-    </div>
+      <h2 class="mt-5 text-white">Dodaj nowego użytkownika</h2>
+      <form method="POST" action="{{ url_for('add_user') }}">
+        <div class="form-group">
+          <label for="username" class="text-white">Nazwa użytkownika</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email" class="text-white">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="first_name" class="text-white">Imię</label>
+          <input
+            type="text"
+            class="form-control"
+            id="first_name"
+            name="first_name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="last_name" class="text-white">Nazwisko</label>
+          <input
+            type="text"
+            class="form-control"
+            id="last_name"
+            name="last_name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="position" class="text-white">Stanowisko</label>
+          <input
+            type="text"
+            class="form-control"
+            id="position"
+            name="position"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="employment_date" class="text-white"
+            >Data zatrudnienia</label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="employment_date"
+            name="employment_date"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-success">Dodaj</button>
+      </form>
     </div>
   </body>
 </html>
