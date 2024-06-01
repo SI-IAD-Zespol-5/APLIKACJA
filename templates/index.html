@@ -102,6 +102,31 @@
         </div>
         <button type="submit" class="btn btn-success">Dodaj</button>
       </form>
+    <h2 class="mt-5 text-white">Użytkownicy</h2>
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Imię</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Nazwa użytkownika</th>
+            <th scope="col">Email</th>
+            <th scope="col">Stanowisko</th>
+            <th scope="col">Data zatrudnienia</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.position }}</td>
+            <td>{{ user.employment_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
     </div>
   </body>

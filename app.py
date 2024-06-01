@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, User, Supply
 
@@ -15,7 +16,9 @@ db.init_app(app)
 @app.route('/')
 def home():
     supplies = Supply.query.all()
-    return render_template('index.html', supplies=supplies)
+    users = User.query.all()
+
+    return render_template('index.html', supplies=supplies, users=users)
 
 @app.route('/edit/<int:supply_id>', methods=['GET', 'POST'])
 def edit_supply(supply_id):
@@ -61,12 +64,13 @@ def add_supply():
 
 if __name__ == '__main__':
     with app.app_context():
+        db.drop_all()
         db.create_all()
         
         # Dodanie przykładowych danych użytkowników i zaopatrzenia
         if User.query.count() == 0:  # Sprawdzenie czy baza jest pusta
-            user1 = User(username='user1', email='user1@example.com')
-            user2 = User(username='user2', email='user2@example.com')
+            user1 = User(username='user1', email='user1@gmail.com', first_name='Jan', last_name='Nowak', position='Dyrektor', employment_date=datetime(2020, 1, 15))
+            user2 = User(username='user2', email='user2@gmail.com', first_name='Joanna', last_name='Kowal', position='Sekretarka', employment_date=datetime(2021, 5, 20))
             db.session.add(user1)
             db.session.add(user2)
             db.session.commit()
