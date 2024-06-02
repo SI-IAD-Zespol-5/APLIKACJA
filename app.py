@@ -90,6 +90,13 @@ def add_user():
     
     return redirect(url_for('home'))
 
+@app.route('/delete_user/<int:user_id>', methods=['POST'])
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for('home'))
+
 if __name__ == '__main__':
     with app.app_context():
         db.drop_all()

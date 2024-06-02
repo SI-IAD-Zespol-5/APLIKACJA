@@ -126,6 +126,17 @@
             <td>{{ user.email }}</td>
             <td>{{ user.position }}</td>
             <td>{{ user.employment_date }}</td>
+          <td>
+              <form
+                method="POST"
+                action="{{ url_for('delete_user', user_id=user.id) }}"
+                style="display: inline"
+              >
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Usuń
+                </button>
+              </form>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
